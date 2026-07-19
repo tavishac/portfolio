@@ -694,6 +694,210 @@
     </div>
   </div>
 </section>
+<!-- ===== EXPANDING SOLAR SYSTEM VISITOR COUNTER ===== -->
+<section id="solar-counter" style="padding:100px 0; text-align:center;">
+  <div class="wrap">
+    <div class="sec-tag" style="color:var(--accent-soft); font-family:'IBM Plex Mono',monospace; font-size:12.5px; margin-bottom:14px;">05 — GROWTH</div>
+    <div class="sec-title" style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:clamp(28px,4vw,42px); margin-bottom:30px;">
+      A solar system that expands with every visitor.
+    </div>
+
+    <svg id="solar-svg" viewBox="0 0 380 380" width="360" height="360" style="overflow:visible;">
+      <defs>
+        <radialGradient id="sun-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#c4b1fc"/>
+          <stop offset="100%" stop-color="#a78bfa"/>
+        </radialGradient>
+        <radialGradient id="system-bg" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.16"/>
+          <stop offset="40%" stop-color="#6d5aad" stop-opacity="0.08"/>
+          <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <circle cx="190" cy="190" r="200" fill="url(#system-bg)"/>
+
+      <circle cx="190" cy="190" r="40"  fill="none" stroke="var(--border-hover)" stroke-width="0.6" stroke-dasharray="1.4 5" opacity="0.5"/>
+      <circle cx="190" cy="190" r="58"  fill="none" stroke="var(--border-hover)" stroke-width="0.6" stroke-dasharray="1.4 5" opacity="0.5"/>
+      <circle cx="190" cy="190" r="76"  fill="none" stroke="var(--border-hover)" stroke-width="0.6" stroke-dasharray="1.4 5" opacity="0.5"/>
+      <circle cx="190" cy="190" r="94"  fill="none" stroke="var(--border-hover)" stroke-width="0.6" stroke-dasharray="1.4 5" opacity="0.5"/>
+      <circle cx="190" cy="190" r="112" fill="none" stroke="var(--border-hover)" stroke-width="0.6" stroke-dasharray="1.4 5" opacity="0.5"/>
+      <circle cx="190" cy="190" r="130" fill="none" stroke="var(--border-hover)" stroke-width="0.6" stroke-dasharray="1.4 5" opacity="0.5"/>
+      <circle cx="190" cy="190" r="148" fill="none" stroke="var(--border-hover)" stroke-width="0.6" stroke-dasharray="1.4 5" opacity="0.5"/>
+      <circle cx="190" cy="190" r="166" fill="none" stroke="var(--border-hover)" stroke-width="0.6" stroke-dasharray="1.4 5" opacity="0.5"/>
+
+      <circle cx="190" cy="190" r="14" fill="url(#sun-glow)" style="filter:drop-shadow(0 0 14px var(--glow));"/>
+
+      <!-- P1: r=40, violet, no moon -->
+      <g id="planet-1" class="planet-orbit" style="transform-origin:190px 190px; opacity:0; transition:opacity .6s ease;">
+        <circle cx="230" cy="190" r="3.5" fill="#8b7ae6"/>
+      </g>
+
+      <!-- P2: r=58, blue-violet, no moon -->
+      <g id="planet-2" class="planet-orbit" style="transform-origin:190px 190px; opacity:0; transition:opacity .6s ease;">
+        <circle cx="248" cy="190" r="4.5" fill="#7b93e8"/>
+      </g>
+
+      <!-- P3: r=76, blue, 1 purple moon -->
+      <g id="planet-3" class="planet-orbit" style="transform-origin:190px 190px; opacity:0; transition:opacity .6s ease;">
+        <circle cx="266" cy="190" r="5" fill="#6fa8e8"/>
+        <g id="moon-3" class="moon-orbit" style="transform-origin:266px 190px;">
+          <circle cx="276" cy="190" r="1.8" fill="#a78bfa"/>
+        </g>
+      </g>
+
+      <!-- P4: r=94, blue, 2 moons -->
+      <g id="planet-4" class="planet-orbit" style="transform-origin:190px 190px; opacity:0; transition:opacity .6s ease;">
+        <circle cx="284" cy="190" r="5.5" fill="#5fbef0"/>
+        <g id="moon-4a" class="moon-orbit" style="transform-origin:284px 190px;">
+          <circle cx="293" cy="190" r="1.4" fill="var(--text-dim)"/>
+        </g>
+        <g id="moon-4b" class="moon-orbit moon-slow" style="transform-origin:284px 190px;">
+          <circle cx="291" cy="197" r="1.1" fill="var(--text-dimmer)"/>
+        </g>
+      </g>
+
+      <!-- P5: r=112, cyan, 1 distant moon -->
+      <!-- P5: Jupiter — 4 Galilean moons, no ring -->
+      <g id="planet-5" class="planet-orbit" style="transform-origin:190px 190px; opacity:0; transition:opacity .6s ease;">
+        <circle cx="302" cy="190" r="6" fill="#71DFFF"/>
+        <g id="moon-5a" class="moon-orbit" style="transform-origin:302px 190px;">
+          <circle cx="311" cy="190" r="1.3" fill="var(--text-dim)"/>
+        </g>
+        <g id="moon-5b" class="moon-orbit moon-fast" style="transform-origin:302px 190px;">
+          <circle cx="302" cy="199" r="1.4" fill="var(--text-dim)"/>
+        </g>
+        <g id="moon-5c" class="moon-orbit moon-slow" style="transform-origin:302px 190px;">
+          <circle cx="314" cy="190" r="1.2" fill="var(--text-dimmer)"/>
+        </g>
+        <g id="moon-5d" class="moon-orbit" style="transform-origin:302px 190px;">
+          <circle cx="302" cy="202" r="1.1" fill="var(--text-dimmer)"/>
+        </g>
+      </g>
+
+      <!-- P6: Saturn — prominent ring + 2 moons -->
+      <g id="planet-6" class="planet-orbit" style="transform-origin:190px 190px; opacity:0; transition:opacity .6s ease;">
+        <g transform="translate(320,190)">
+          <ellipse cx="0" cy="0" rx="13" ry="3.6" fill="none" stroke="#7CEBFF" stroke-width="1.6" opacity="0.75" transform="rotate(-16)"/>
+          <circle cx="0" cy="0" r="6" fill="#7CEBFF"/>
+        </g>
+        <g id="moon-6a" class="moon-orbit moon-slow" style="transform-origin:320px 190px;">
+          <circle cx="332" cy="190" r="1.3" fill="var(--text-dim)"/>
+        </g>
+        <g id="moon-6b" class="moon-orbit" style="transform-origin:320px 190px;">
+          <circle cx="320" cy="202" r="1.1" fill="var(--text-dimmer)"/>
+        </g>
+      </g>
+
+      <!-- P7: Uranus — thin ring + 2 moons -->
+      <g id="planet-7" class="planet-orbit" style="transform-origin:190px 190px; opacity:0; transition:opacity .6s ease;">
+        <g transform="translate(338,190)">
+          <ellipse cx="0" cy="0" rx="12" ry="3.2" fill="none" stroke="#CFE6FF" stroke-width="0.9" opacity="0.6" transform="rotate(75)"/>
+          <circle cx="0" cy="0" r="7" fill="#CFE6FF"/>
+        </g>
+        <g id="moon-7a" class="moon-orbit moon-fast" style="transform-origin:338px 190px;">
+          <circle cx="352" cy="190" r="1.3" fill="var(--text-dim)"/>
+        </g>
+        <g id="moon-7b" class="moon-orbit moon-slow" style="transform-origin:338px 190px;">
+          <circle cx="338" cy="204" r="1.5" fill="var(--text-dim)"/>
+        </g>
+      </g>
+
+      <!-- P8: Neptune — faint ring + Triton -->
+      <g id="planet-8" class="planet-orbit" style="transform-origin:190px 190px; opacity:0; transition:opacity .6s ease;">
+        <g transform="translate(356,190)">
+          <ellipse cx="0" cy="0" rx="16" ry="5" fill="none" stroke="#EAF2FF" stroke-width="1.2" opacity="0.55" transform="rotate(-20)"/>
+          <circle cx="0" cy="0" r="9" fill="#EAF2FF"/>
+        </g>
+        <g id="moon-8a" class="moon-orbit moon-slow" style="transform-origin:356px 190px;">
+          <circle cx="370" cy="190" r="1.6" fill="var(--text-dim)"/>
+        </g>
+      </g>
+    </svg>
+
+    <p style="font-family:'IBM Plex Mono',monospace; color:var(--text-dim); margin-top:18px; font-size:13px;">
+      <span id="visitor-count">…</span> visitors have expanded this system
+    </p>
+  </div>
+</section>
+
+<style>
+  @keyframes orbit-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes moon-spin  { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  .planet-orbit.lit { animation: orbit-spin linear infinite; opacity: 1 !important; }
+  #planet-1.lit { animation-duration: 16s; }
+  #planet-2.lit { animation-duration: 22s; }
+  #planet-3.lit { animation-duration: 28s; }
+  #planet-4.lit { animation-duration: 34s; }
+  #planet-5.lit { animation-duration: 42s; }
+  #planet-6.lit { animation-duration: 50s; }
+  #planet-7.lit { animation-duration: 60s; }
+  #planet-8.lit { animation-duration: 72s; }
+
+  .moon-orbit.lit { animation: moon-spin linear infinite; animation-duration: 6s; }
+  .moon-orbit.lit.moon-fast { animation-duration: 3.6s; }
+  .moon-orbit.lit.moon-slow { animation-duration: 9s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .planet-orbit.lit, .moon-orbit.lit { animation: none; }
+  }
+</style>
+
+<script>
+(function () {
+  var COUNTER_KEY = "tavishac-portfolio-solar-v1";
+  var HIT_URL = "https://countapi.mileshilliard.com/api/v1/hit/" + COUNTER_KEY;
+  var GET_URL = "https://countapi.mileshilliard.com/api/v1/get/" + COUNTER_KEY;
+
+  var THRESHOLDS = { 1: 1, 2: 3, 3: 7, 4: 12, 5: 15, 6: 20, 7: 30, 8: 50 };
+  var MOON_IDS = {
+    3: ['moon-3'],
+    4: ['moon-4a', 'moon-4b'],
+    5: ['moon-5a', 'moon-5b', 'moon-5c', 'moon-5d'],
+    6: ['moon-6a', 'moon-6b'],
+    7: ['moon-7a', 'moon-7b'],
+    8: ['moon-8a']
+  };
+
+  function growSystem(count) {
+    for (var i = 1; i <= 8; i++) {
+      var unlocked = count >= THRESHOLDS[i];
+      document.getElementById('planet-' + i).classList.toggle('lit', unlocked);
+      var moons = MOON_IDS[i];
+      if (moons) {
+        moons.forEach(function (id) {
+          document.getElementById(id).classList.toggle('lit', unlocked);
+        });
+      }
+    }
+    document.getElementById('visitor-count').textContent = count;
+  }
+
+  window.growSystem = growSystem; // expose for console testing, e.g. growSystem(25)
+
+  var urlParams = new URLSearchParams(window.location.search);
+  var testCount = urlParams.get('testcount');
+
+  if (testCount !== null) {
+    growSystem(parseInt(testCount, 10));
+  } else {
+    var alreadyCounted = sessionStorage.getItem('solar_counted');
+    var fetchUrl = alreadyCounted ? GET_URL : HIT_URL;
+
+    fetch(fetchUrl)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var count = data.value || 0;
+        sessionStorage.setItem('solar_counted', '1');
+        growSystem(count);
+      })
+      .catch(function () {
+        document.getElementById('visitor-count').textContent = '—';
+      });
+  }
+})();
+</script>
 
 <footer id="contact">
   <div class="wrap">
@@ -898,6 +1102,8 @@
     ctx.restore();
   }
 
+  var GAP = 16; // pixels of empty space kept between the mouse arrow and the rocket
+
   function step(){
     t += 1;
     ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
@@ -909,14 +1115,19 @@
 
     var dx = mouse.x - pos.x, dy = mouse.y - pos.y;
     var dist = Math.sqrt(dx*dx + dy*dy);
-    pos.x += dx * 0.18;
-    pos.y += dy * 0.18;
 
     if (dist > 2){
       var target = Math.atan2(dy, dx);
       var diff = Math.atan2(Math.sin(target - angle), Math.cos(target - angle));
       angle += diff * 0.2;
     }
+
+    // target sits GAP pixels behind the actual cursor, along the current heading,
+    // so the rocket never overlaps the mouse arrow even when idle
+    var targetX = mouse.x - Math.cos(angle) * GAP;
+    var targetY = mouse.y - Math.sin(angle) * GAP;
+    pos.x += (targetX - pos.x) * 0.18;
+    pos.y += (targetY - pos.y) * 0.18;
 
     // exhaust emits from the tail, opposite the nose direction
     if (dist > 1){

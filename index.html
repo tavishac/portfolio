@@ -408,6 +408,40 @@
   }
   @media (max-width: 860px){ #launch-rail{ display:none; } }
   @media (prefers-reduced-motion: reduce){ .rail-rocket svg{ animation:none; } }
+
+  
+  .cert-card{ flex-wrap: wrap; margin-bottom: 14px; }
+  .cert-info{ flex:1; min-width: 200px; }
+  .cert-badge svg{ display:block; }
+
+  .cert-view-btn{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; color: var(--text-dim);
+    background: transparent; border:1px solid var(--border); padding:9px 16px;
+    border-radius:8px; cursor:pointer; white-space:nowrap; transition: all .2s ease;
+  }
+  .cert-view-btn:hover{ color: var(--accent-soft); border-color: var(--accent-dim); }
+
+  .cert-modal{
+    position: fixed; inset:0; z-index: 10000; display:none;
+    align-items:center; justify-content:center; padding: 24px;
+    background: rgba(5,5,10,0.88); backdrop-filter: blur(6px);
+  }
+  .cert-modal.open{ display:flex; }
+  .cert-modal-inner{ position:relative; max-width: 960px; width:100%; text-align:center; }
+  .cert-img-wrap{ position:relative; display:inline-block; max-width:100%; }
+  .cert-img-wrap img{
+    display:block; max-width:100%; max-height: 80vh; border-radius:10px;
+    border:1px solid var(--border-hover); box-shadow: 0 0 40px var(--glow);
+    user-select:none; -webkit-user-select:none; -webkit-touch-callout:none;
+  }
+  .cert-shield{ position:absolute; inset:0; background: transparent; }
+  .cert-modal-title{ font-family:'IBM Plex Mono', monospace; font-size:13px; color: var(--text-dim); margin-top:14px; }
+  .cert-close{
+    position:absolute; top:-14px; right:-6px; z-index:2; width:36px; height:36px;
+    border-radius:50%; border:1px solid var(--border-hover); background: var(--card);
+    color: var(--text); cursor:pointer; font-size:14px;
+  }
+  .cert-close:hover{ border-color: var(--accent); color: var(--accent-soft); }
 </style>
 </head>
 <body>
@@ -501,6 +535,7 @@
           <div class="stat-num">AWS</div>
           <div class="stat-label">CERTIFIED CLOUD PRACTITIONER</div>
         </div>
+        
       </div>
     </div>
   </div>
@@ -613,7 +648,7 @@
       <div class="project">
         <div class="project-num">02</div>
         <div class="project-content">
-          <div class="project-title">Data-verse AI — Intelligent Data Analysis Web Application</div>
+          <div class="project-title">Datagraph AI — Intelligent Data Analysis Web Application</div>
           <div class="project-desc">Developed a web-based application that allows users to upload datasets and generate real-time data insights and visualizations.</div>
           <ul class="project-bullets">
             <li>Implemented automated data analysis pipelines using Python and Pandas to generate statistical summaries</li>
@@ -720,27 +755,53 @@
     <div class="sec-head">
       <div class="sec-tag">04 — CERTIFICATION</div>
     </div>
+
     <div class="cert-card">
       <div class="cert-badge">RTRP</div>
-      <div>
+      <div class="cert-info">
         <div class="cert-title">Project Title : Real-time Emotion Detection in Online Assessments</div>
         <div class="cert-sub">Real time project</div>
       </div>
+      <button type="button" class="cert-view-btn" data-img="certs/rtrp CERTIFICATE_page-0001.jpg" data-title="Real-time Project Certificate">View certificate</button>
     </div>
-    <br>
 
-
-
-    
     <div class="cert-card">
       <div class="cert-badge">AWS</div>
-      <div>
+      <div class="cert-info">
         <div class="cert-title">AWS Certified Cloud Practitioner</div>
         <div class="cert-sub">Amazon Web Services</div>
       </div>
+      <button type="button" class="cert-view-btn" data-img="certs\Aws_tavisha_page-0001.jpg" data-title="AWS Certified Cloud Practitioner">View certificate</button>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-badge">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#0a0a0f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M8 4h8v5a4 4 0 0 1-8 0V4z"/>
+          <path d="M8 6H4v1a3 3 0 0 0 3 3M16 6h4v1a3 3 0 0 1-3 3"/>
+          <path d="M12 13v4M8 20h8M9.5 17h5"/>
+        </svg>
+      </div>
+      <div class="cert-info">
+        <div class="cert-title">Hackathon</div>
+        <div class="cert-sub">EPITOME 25 at Grrr</div>
+      </div>
+      <button type="button" class="cert-view-btn" data-img="certs\Tavisha Chandana Certificate of Participation Epitome 25 Hackathon 2025_page-0001.jpg" data-title="EPITOME 25 Hackathon Certificate">View certificate</button>
     </div>
   </div>
 </section>
+
+<div class="cert-modal" id="cert-modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="cert-modal-inner">
+    <button type="button" class="cert-close" id="cert-close" aria-label="Close">✕</button>
+    <div class="cert-img-wrap">
+      <img id="cert-modal-img" src="" alt="" draggable="false">
+      <div class="cert-shield"></div>
+    </div>
+    <div class="cert-modal-title" id="cert-modal-title"></div>
+  </div>
+</div>
+
 <!-- ===== EXPANDING SOLAR SYSTEM VISITOR COUNTER ===== -->
 <section id="solar-counter" style="padding:100px 0; text-align:center;">
   <div class="wrap">
@@ -1376,6 +1437,36 @@
   window.addEventListener('scroll', update, { passive: true });
   window.addEventListener('resize', update);
   update();
+})();
+
+(function(){
+  var modal = document.getElementById('cert-modal');
+  var img = document.getElementById('cert-modal-img');
+  var title = document.getElementById('cert-modal-title');
+  if (!modal) return;
+
+  function openModal(src, t){
+    img.src = src; img.alt = t || 'Certificate';
+    title.textContent = t || '';
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    img.src = '';
+  }
+
+  document.querySelectorAll('.cert-view-btn').forEach(function(b){
+    b.addEventListener('click', function(){ openModal(b.dataset.img, b.dataset.title); });
+  });
+  document.getElementById('cert-close').addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
+  modal.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+  img.addEventListener('dragstart', function(e){ e.preventDefault(); });
 })();
 </script>
 </body>
